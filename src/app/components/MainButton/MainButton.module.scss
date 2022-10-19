@@ -1,0 +1,50 @@
+.MainButton {
+  display: flex;
+  align-items: flex-end;
+  padding: 0 1em;
+  font-size: 1.5em;
+  height: 100%;
+  button {
+    height: 100%;
+    border: 0;
+    padding: 0;
+    width: 9.5em;
+    background-image: url("../../../assets/img/main_button.png");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    background-repeat: no-repeat;
+    border-radius: 0.9rem;
+    opacity: 0.94;
+    transition: opacity 0.15s, filter 0.25s;
+    overflow: hidden;
+    cursor: pointer;
+    &:disabled {
+      cursor: default;
+      filter: saturate(20%);
+    }
+    &:not(:disabled):hover {
+      opacity: 1;
+      > div {
+        background-color: rgba(230,204,204, 0.1);
+      }
+      &:active {
+        > div {
+          background-color: rgba(255,230,230, 0.15);
+        }
+      }
+    }
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      box-sizing: border-box;
+      font-size: 1.25em;
+      font-weight: bold;
+      text-shadow: 0.05em 0.05em 0.1em #321, -0.05em 0.05em 0.1em #321, 0.05em -0.05em 0.1em #321, -0.05em -0.05em 0.1em #321;
+      border: solid 0.375rem rgba(51,0,0, 0.6);
+      border-radius: 0.9rem;
+    }
+  }
+}

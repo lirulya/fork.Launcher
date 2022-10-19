@@ -1,0 +1,34 @@
+.NewsCarousel {
+  width: 97vh;
+  height: 72.75vh;
+  border-radius: 0.5em;
+  overflow: hidden;
+  :global(.carousel) {
+    :global(.control-arrow) {
+      padding: 0.25rem;
+      background-color: #FFFFFF;
+      opacity: 0.3;
+      &:hover {
+        opacity: 0.7;
+      }
+      &:global(.control-prev.control-arrow) {
+        &:before {
+          border-right: 1.5rem solid black;
+          border-top-width: 1.5rem;
+          border-bottom-width: 1.5rem;
+        }
+      }
+      &:global(.control-next.control-arrow) {
+        &:before {
+          border-left: 1.5rem solid black;
+          border-top-width: 1.5rem;
+          border-bottom-width: 1.5rem;
+        }
+      }
+    }
+    :global(.control-dots .dot) {
+      box-shadow: none;
+      background-color: #010101;
+    }
+  }
+}
