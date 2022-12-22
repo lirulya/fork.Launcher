@@ -17,6 +17,7 @@ export const Loader = () => {
   const [loaderState, setLoaderState] = useState<LoaderState>(LoaderState.INITIALIZING);
   const [itemsLoaded, setItemsLoaded] = useState(0);
   const [itemsTotal, setItemsTotal] = useState(0);
+  const [forceDisableButton, setForceDisableButton] = useState(false);
 
   const progress = useMemo(() => Math.round((itemsLoaded * 100) / itemsTotal) || 0, [itemsLoaded, itemsTotal]);
 
@@ -31,8 +32,8 @@ export const Loader = () => {
   }, [loaderState]);
 
   const mainBtnDisabled = useMemo(() => {
-    return loaderState !== LoaderState.UP_TO_DATE && loaderState !== LoaderState.UPDATE_REQUIRED;
-  }, [loaderState]);
+    return forceDisableButton || (loaderState !== LoaderState.UP_TO_DATE && loaderState !== LoaderState.UPDATE_REQUIRED);
+  }, [forceDisableButton, loaderState]);
 
   const progressLabel = useMemo(() => {
     switch (loaderState) {
@@ -60,7 +61,11 @@ export const Loader = () => {
   }
 
   function launchGame() {
+    setForceDisableButton(true);
     window.api.ipc.send("launchGame");
+    setTimeout(() => {
+      setForceDisableButton(false);
+    }, 3000);
   }
 
   useEffect(() => {
