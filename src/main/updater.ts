@@ -114,11 +114,20 @@ export namespace Updater {
   }
 
   async function downloadAndSave(fileUrl: string, filePath: string) {
-    const fileBuf = await got.get(fileUrl).buffer();
-    if (!fs.existsSync(path.dirname(filePath))) {
-      fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    try {
+      const fileBuf = await got.get(fileUrl).buffer();
+      if (!fs.existsSync(path.dirname(filePath))) {
+        fs.mkdirSync(path.dirname(filePath), { recursive: true });
+      }
+      fs.writeFileSync(filePath, fileBuf);
+    } catch (err) {
+      console.error(err);
+      dialog.showErrorBox(
+        "Une erreur est survenue",
+        "Erreur lors du téléchargement d'un fichier !\nVérifiez votre connexion internet et réessayez.\n\nSi le problème persiste, contactez nous sur Discord."
+      );
+      app.quit();
     }
-    fs.writeFileSync(filePath, fileBuf);
   }
 
   async function downloadFiles(files: Array<FileManifest>) {

@@ -5,6 +5,7 @@ import { Constants } from "./constants";
 import { CdnService } from "./cdnService";
 import { Updater } from "./updater";
 import { exec } from "child_process";
+import { Utils } from "./utils";
 
 export namespace IPC {
   export function registerEvents(mainWindow: BrowserWindow) {
@@ -45,9 +46,12 @@ export namespace IPC {
     });
 
     ipcMain.on("launchGame", (_event) => {
+      const javaArgs = Utils.buildJavaArgs(process.platform);
+      console.log(`Launching game with args: ${javaArgs}`);
+
       switch (process.platform) {
         case "win32":
-          exec("start DofusArena.exe", { cwd: Constants.GAME_PATH });
+          exec(`..\\jre\\bin\\java.exe ${javaArgs}`, { cwd: path.join(Constants.GAME_PATH, "game") });
           break;
       }
     });
