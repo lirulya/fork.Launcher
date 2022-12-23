@@ -29,6 +29,9 @@
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
+          "platforms": [
+            "win32"
+          ],
           "config": {
             "name": "arena-returns-launcher",
             "iconUrl": "https://launcher.arena-returns.com/favicon.ico",
@@ -38,21 +41,8 @@
         {
           "name": "@electron-forge/maker-zip",
           "platforms": [
-            "darwin",
             "linux"
           ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {
-            "options": {
-              "icon": "src/assets/icon/icon.png"
-            }
-          }
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
         }
       ],
       "publishers": [
@@ -95,8 +85,6 @@
     "@babel/core": "^7.20.7",
     "@babel/preset-react": "^7.18.6",
     "@electron-forge/cli": "^6.0.4",
-    "@electron-forge/maker-deb": "^6.0.4",
-    "@electron-forge/maker-rpm": "^6.0.4",
     "@electron-forge/maker-squirrel": "^6.0.4",
     "@electron-forge/maker-zip": "^6.0.4",
     "@electron-forge/plugin-webpack": "6.0.4",

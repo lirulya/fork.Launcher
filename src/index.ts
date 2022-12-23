@@ -30,6 +30,7 @@ const createWindow = async () => {
     maxWidth: 1366,
     maxHeight: 768,
     maximizable: false,
+    fullscreenable: false,
     icon: "assets/icon/icon.png",
     webPreferences: {
       nodeIntegration: false,
@@ -42,6 +43,11 @@ const createWindow = async () => {
     backgroundColor: "#3B180E",
     show: false,
   });
+
+  if (process.platform === "linux") {
+    console.log("Linux system detected. Disabling resizing as it causes issues with Gnome.");
+    mainWindow.setResizable(false);
+  }
 
   mainWindow.setAspectRatio(16 / 9);
 
