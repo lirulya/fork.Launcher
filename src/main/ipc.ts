@@ -21,13 +21,13 @@ export namespace IPC {
       dialog
         .showMessageBox(mainWindow, {
           type: "question",
-          buttons: ["Réparer", "Annuler"],
+          buttons: ["Annuler", "Réparer"],
           title: "Réparation",
           message: "Voulez-vous réparer le client de jeu ?",
           detail: "Cette opération va vérifier tous les fichiers du jeu et télécharger ceux posant problème.",
         })
         .then((result) => {
-          if (result.response === 0) {
+          if (result.response === 1) {
             mainWindow.webContents.send("repairStarted");
           }
         });
