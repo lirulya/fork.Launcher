@@ -53,6 +53,10 @@ export namespace IPC {
         case "win32":
           exec(`..\\jre\\bin\\java.exe ${javaArgs}`, { cwd: path.join(Constants.GAME_PATH, "game") });
           break;
+        case "linux":
+          fs.chmodSync(path.join(Constants.GAME_PATH, "jre", "bin", "java"), 0o755);
+          exec(`../jre/bin/java ${javaArgs}`, { cwd: path.join(Constants.GAME_PATH, "game") });
+          break;
       }
     });
   }

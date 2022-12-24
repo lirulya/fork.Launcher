@@ -11,6 +11,9 @@ export namespace Utils {
       case "win32":
         javaArgs.push(`-Djava.library.path=..\\natives\\win32\\x86;..\\jre\\bin`);
         break;
+      case "linux":
+        javaArgs.push(`-Djava.library.path=../natives/linux/x86:../jre/bin`);
+        break;
     }
 
     // Game related args
@@ -38,6 +41,13 @@ export namespace Utils {
         });
         javaArgs.push(`-Djava.class.path=${classPath.join(";")}`);
         break;
+      case "linux":
+        classPath.push("core.jar");
+        libFiles.forEach((file) => {
+          classPath.push(`../lib/${file}`);
+        });
+        javaArgs.push(`-Djava.class.path=${classPath.join(":")}`);
+        break;
     }
 
     // Main class
@@ -46,6 +56,7 @@ export namespace Utils {
     // Logs path
     switch (platform) {
       case "win32":
+      case "linux":
         javaArgs.push("error.log");
         javaArgs.push("output.log");
         break;
