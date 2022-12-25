@@ -45,7 +45,6 @@
           ],
           "config": {
             "options": {
-              "name": "arena-returns-launcher",
               "icon": "src/assets/icon/icon.png",
               "categories": [
                 "Game",
@@ -134,6 +133,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-konami-code": "^2.3.0",
     "react-responsive-carousel": "^3.2.23",
     "update-electron-app": "^2.0.1"
   }

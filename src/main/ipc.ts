@@ -8,6 +8,8 @@ import { exec } from "child_process";
 import { Utils } from "./utils";
 
 export namespace IPC {
+  let devMode = false;
+
   export function registerEvents(mainWindow: BrowserWindow) {
     ipcMain.on("close", () => {
       app.quit();
@@ -39,6 +41,22 @@ export namespace IPC {
         return;
       }
       shell.openExternal(url);
+    });
+
+    ipcMain.on("enableDevMode", (_event) => {
+      if (!devMode) {
+        devMode = true;
+        dialog.showMessageBox(mainWindow, {
+          type: "info",
+          message: "Mode développeur activé",
+        });
+        return;
+      }
+
+      dialog.showMessageBox(mainWindow, {
+        type: "error",
+        message: "Le mode développeur est déjà activé",
+      });
     });
 
     ipcMain.on("startUpdate", (_event) => {
@@ -78,5 +96,9 @@ export namespace IPC {
     ipcMain.handle("getCarouselData", async () => {
       return CdnService.manifest.carousel;
     });
+  }
+
+  export function isDevMode() {
+    return devMode;
   }
 }

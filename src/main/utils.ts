@@ -1,6 +1,7 @@
 import { Constants } from "./constants";
 import path from "path";
 import fs from "fs";
+import { IPC } from "./ipc";
 
 export namespace Utils {
   export const buildJavaArgs = (platform: NodeJS.Platform) => {
@@ -28,6 +29,16 @@ export namespace Utils {
     javaArgs.push("-XX:MinHeapFreeRatio=10");
     javaArgs.push("-XX:MaxHeapFreeRatio=20");
     javaArgs.push("-Xss256k");
+
+    // JMX Remote in Dev Mode
+    if (IPC.isDevMode()) {
+      javaArgs.push("-Dcom.sun.management.jmxremote");
+      javaArgs.push("-Dcom.sun.management.jmxremote.port=9010");
+      javaArgs.push("-Dcom.sun.management.jmxremote.rmi.port=9010");
+      javaArgs.push("-Dcom.sun.management.jmxremote.local.only=false");
+      javaArgs.push("-Dcom.sun.management.jmxremote.authenticate=false");
+      javaArgs.push("-Dcom.sun.management.jmxremote.ssl=false");
+    }
 
     // Classpath
     const classPath = [];

@@ -1,10 +1,19 @@
+import { useKonami } from "react-konami-code";
 import Loader from "../Loader";
 import LogoAndSocial from "../LogoAndSocial";
 import NewsCarousel from "../NewsCarousel";
 import TitleBar from "../TitleBar";
 import styles from "./Launcher.module.scss";
 
+const enableDevMode = () => {
+  window.api.ipc.send("enableDevMode");
+};
+
 export const Launcher = () => {
+  useKonami(enableDevMode, {
+    code: [68, 69, 86, 77, 79, 68, 69],
+  });
+
   return (
     <div className={styles.Launcher}>
       <TitleBar />
