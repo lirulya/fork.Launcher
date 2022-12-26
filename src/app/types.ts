@@ -6,6 +6,7 @@ export type CarouselItem = {
 };
 
 export type Manifest = {
+  launcherVersion: string;
   gameVersion: string;
   carousel: Array<CarouselItem>;
 };
