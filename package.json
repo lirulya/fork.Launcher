@@ -41,7 +41,7 @@
         {
           "name": "@reforged/maker-appimage",
           "platforms": [
-            "disabled"
+            "linux"
           ],
           "config": {
             "options": {
