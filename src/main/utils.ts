@@ -64,15 +64,6 @@ export namespace Utils {
     // Main class
     javaArgs.push("com.ankamagames.dofusarena.client.DofusArenaClient");
 
-    // Logs path
-    switch (platform) {
-      case "win32":
-      case "linux":
-        javaArgs.push("error.log");
-        javaArgs.push("output.log");
-        break;
-    }
-
     return javaArgs.join(" ");
   };
 }
