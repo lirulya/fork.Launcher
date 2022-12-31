@@ -24,6 +24,7 @@ export namespace Utils {
     javaArgs.push("-Xmx384M");
     javaArgs.push("-Xms192M");
     javaArgs.push("-Dsun.awt.noerasebackground=true");
+    javaArgs.push("-Dhttp.agent=DofusArenaClient"); // Fix a nasty bug with in-game bug reports
     javaArgs.push("-XX:MaxDirectMemorySize=92m");
     javaArgs.push("-XX:+ForceTimeHighResolution");
     javaArgs.push("-XX:MinHeapFreeRatio=10");
