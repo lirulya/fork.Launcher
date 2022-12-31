@@ -9,9 +9,17 @@ const enableDevMode = () => {
   window.api.ipc.send("enableDevMode");
 };
 
+const toggleDevTools = () => {
+  window.api.ipc.send("toggleDevTools");
+};
+
 export const Launcher = () => {
   useKonami(enableDevMode, {
     code: [68, 69, 86, 77, 79, 68, 69],
+  });
+
+  useKonami(toggleDevTools, {
+    code: [123],
   });
 
   return (

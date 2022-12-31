@@ -59,11 +59,32 @@ export namespace IPC {
       });
     });
 
+    ipcMain.on("toggleDevTools", (_event) => {
+      if (!devMode) return;
+      if (mainWindow.webContents.isDevToolsOpened()) {
+        mainWindow.webContents.closeDevTools();
+      } else {
+        mainWindow.webContents.openDevTools({ mode: "detach" });
+      }
+    });
+
     ipcMain.on("startUpdate", (_event) => {
       Updater.startUpdate();
     });
 
     ipcMain.on("launchGame", (_event) => {
+      if (devMode) {
+        console.log("DevMode enabled, checking if we need to inject a localhost config in the client...");
+        const gameConfigPath = path.join(Constants.GAME_PATH, "game", "config.properties");
+        const gameConfig = fs.readFileSync(gameConfigPath);
+        if (gameConfig.includes("127.0.0.1:5555")) {
+          console.log("Localhost config already present, good!");
+        } else {
+          console.log("Adding the Localhost config");
+          fs.appendFileSync(gameConfigPath, "\r\nproxyGroup_666=Localhost\r\nproxyAddresses_666=127.0.0.1:5555");
+        }
+      }
+
       const javaArgs = Utils.buildJavaArgs(process.platform);
       console.log(`Launching game with args: ${javaArgs}`);
 
