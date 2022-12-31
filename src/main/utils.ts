@@ -44,16 +44,17 @@ export namespace Utils {
     const classPath = [];
     const libPath = path.join(Constants.GAME_PATH, "lib");
     const libFiles = fs.readdirSync(libPath);
+    // The dark magic we use to patch bugs requires the wrapper to be loaded after the client.
+    classPath.push("core.jar");
+    classPath.push("wrapper.jar");
     switch (platform) {
       case "win32":
-        classPath.push("core.jar");
         libFiles.forEach((file) => {
           classPath.push(`..\\lib\\${file}`);
         });
         javaArgs.push(`-Djava.class.path=${classPath.join(";")}`);
         break;
       case "linux":
-        classPath.push("core.jar");
         libFiles.forEach((file) => {
           classPath.push(`../lib/${file}`);
         });
@@ -62,7 +63,7 @@ export namespace Utils {
     }
 
     // Main class
-    javaArgs.push("com.ankamagames.dofusarena.client.DofusArenaClient");
+    javaArgs.push("com.arenareturns.client.ArenaReturnsWrapper");
 
     return javaArgs.join(" ");
   };
