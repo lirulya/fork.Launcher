@@ -62,7 +62,7 @@ export namespace Utils {
         break;
     }
 
-    // Main class
+    // Wrapper entrypoint
     javaArgs.push("com.arenareturns.client.ArenaReturnsWrapper");
 
     return javaArgs.join(" ");
