@@ -77,11 +77,11 @@ export namespace IPC {
         console.log("DevMode enabled, checking if we need to inject a localhost config in the client...");
         const gameConfigPath = path.join(Constants.GAME_PATH, "game", "config.properties");
         const gameConfig = fs.readFileSync(gameConfigPath);
-        if (gameConfig.includes("127.0.0.1:5555")) {
+        if (gameConfig.includes("127.0.0.1:5555") || gameConfig.includes("localhost:5555")) {
           console.log("Localhost config already present, good!");
         } else {
           console.log("Adding the Localhost config");
-          fs.appendFileSync(gameConfigPath, "\r\nproxyGroup_666=Localhost\r\nproxyAddresses_666=127.0.0.1:5555");
+          fs.appendFileSync(gameConfigPath, "\r\nproxyGroup_2=Localhost\r\nproxyAddresses_2=127.0.0.1:5555");
         }
       }
 
