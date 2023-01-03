@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./TitleBar.module.scss";
+import { DebugMode } from "../../types";
 
 export const TitleBar = () => {
   const [repairVisible, setRepairVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
+  const [devMode, toggleDevMode] = useState(false);
+  const [debugMode, setDebugMode] = useState<DebugMode>(DebugMode.NO_DEBUG);
 
   const handleChange = () => {
     setMenuVisible(!menuVisible);
@@ -27,6 +30,18 @@ export const TitleBar = () => {
     window.api.ipc.send("minimize");
   };
 
+  const nextDebugMode = (e: React.MouseEvent<HTMLLIElement>) => {
+    // @ts-ignore | quick and no so dirty index roll over an TS enum
+    let next:DebugMode = DebugMode[DebugMode[(debugMode + 1) % DebugMode.__LENGTH]];
+    setDebugMode(next);
+    window.api.ipc.send("changeDebugMode", next);
+    e.stopPropagation(); //we prevent the event from closing the whole menu
+  };
+
+  const clearLogs = () => {
+    window.api.ipc.send("clearLogs");
+  };
+
   const repairApp = () => {
     window.api.ipc.send("repair");
   };
@@ -34,6 +49,9 @@ export const TitleBar = () => {
   useEffect(() => {
     window.api.ipc.on("setRepairVisible", (_event, visible: boolean) => {
       setRepairVisible(visible);
+    });
+    window.api.ipc.on("devModeEnabled", (_event) => {
+      toggleDevMode(true);
     });
   }, []);
 
@@ -46,6 +64,10 @@ export const TitleBar = () => {
             <li onClick={openStatus} className={styles.iconStatus}>Voir le status des services</li>
             {repairVisible && <li onClick={openGameDir} className={styles.iconOpen}>Ouvrir le dossier du jeu</li>}
             {repairVisible && <li onClick={repairApp} className={styles.iconRepair}>Réparer</li>}
+
+            {/* Dev mode options*/}
+            {devMode && repairVisible && <li onClick={clearLogs} className={styles.clearLogs}>Effacer les logs</li>}
+            {devMode && <li onClick={nextDebugMode}>Debug mode: {DebugMode[debugMode]}</li>}
           </ul>
         </div>
       </div>

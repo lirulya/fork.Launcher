@@ -10,3 +10,11 @@ export type Manifest = {
   gameVersion: string;
   carousel: Array<CarouselItem>;
 };
+
+export enum DebugMode {
+  NO_DEBUG,
+  JMX,
+  AGENT,
+  AGENT_SUSPENDED,
+  __LENGTH
+}

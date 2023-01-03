@@ -1,7 +1,7 @@
 import { Constants } from "./constants";
 import path from "path";
 import fs from "fs";
-import { IPC } from "./ipc";
+import { DebugMode, IPC } from "./ipc";
 
 export namespace Utils {
   export const buildJavaArgs = (platform: NodeJS.Platform) => {
@@ -31,14 +31,24 @@ export namespace Utils {
     javaArgs.push("-XX:MaxHeapFreeRatio=20");
     javaArgs.push("-Xss256k");
 
-    // JMX Remote in Dev Mode
-    if (IPC.isDevMode()) {
-      javaArgs.push("-Dcom.sun.management.jmxremote");
-      javaArgs.push("-Dcom.sun.management.jmxremote.port=9010");
-      javaArgs.push("-Dcom.sun.management.jmxremote.rmi.port=9010");
-      javaArgs.push("-Dcom.sun.management.jmxremote.local.only=false");
-      javaArgs.push("-Dcom.sun.management.jmxremote.authenticate=false");
-      javaArgs.push("-Dcom.sun.management.jmxremote.ssl=false");
+    switch (IPC.getDebugMode()) {
+      case DebugMode.JMX: {
+        javaArgs.push("-Dcom.sun.management.jmxremote");
+        javaArgs.push("-Dcom.sun.management.jmxremote.port=9010");
+        javaArgs.push("-Dcom.sun.management.jmxremote.rmi.port=9010");
+        javaArgs.push("-Dcom.sun.management.jmxremote.local.only=false");
+        javaArgs.push("-Dcom.sun.management.jmxremote.authenticate=false");
+        javaArgs.push("-Dcom.sun.management.jmxremote.ssl=false");
+        break;
+      }
+      case DebugMode.AGENT: {
+        javaArgs.push("-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9010");
+        break;
+      }
+      case DebugMode.AGENT_SUSPENDED: {
+        javaArgs.push("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=9010");
+        break;
+      }
     }
 
     // Classpath
@@ -65,7 +75,6 @@ export namespace Utils {
 
     // Wrapper entrypoint
     javaArgs.push("com.arenareturns.client.ArenaReturnsWrapper");
-
     return javaArgs.join(" ");
   };
 }

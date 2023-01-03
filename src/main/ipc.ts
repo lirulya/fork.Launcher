@@ -7,12 +7,30 @@ import { Updater } from "./updater";
 import { exec } from "child_process";
 import { Utils } from "./utils";
 
+export enum DebugMode {
+  NO_DEBUG,
+  JMX,
+  AGENT,
+  AGENT_SUSPENDED
+}
+
 export namespace IPC {
   let devMode = false;
+  let debugMode: DebugMode = DebugMode.NO_DEBUG;
 
   export function registerEvents(mainWindow: BrowserWindow) {
     ipcMain.on("close", () => {
       app.quit();
+    });
+
+    ipcMain.on("changeDebugMode", (_event, mode:DebugMode) => {
+      debugMode = mode;
+    })
+
+    ipcMain.on("clearLogs", () => {
+      const baseLogDir = path.join(Constants.GAME_PATH, "game");
+      fs.unlinkSync(path.join(baseLogDir, "error.log"));
+      fs.unlinkSync(path.join(baseLogDir, "output.log"));
     });
 
     ipcMain.on("openGameDir", () => {
@@ -50,6 +68,7 @@ export namespace IPC {
     });
 
     ipcMain.on("enableDevMode", (_event) => {
+      mainWindow.webContents.send("devModeEnabled");
       if (!devMode) {
         devMode = true;
         dialog.showMessageBox(mainWindow, {
@@ -127,5 +146,9 @@ export namespace IPC {
 
   export function isDevMode() {
     return devMode;
+  }
+
+  export function getDebugMode() {
+    return debugMode;
   }
 }
