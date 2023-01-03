@@ -1,9 +1,13 @@
+:root {
+  --menuBarWidth: 2em;
+}
 .TitleBar {
   display: flex;
-  background-color: #000000;
-  opacity: 0.4;
-  height: 2em;
+  background-color: rgb(0, 0, 0, .4);
+  height: var(--menuBarWidth);
   -webkit-app-region: drag;
+  position: relative;
+  z-index: 99;
 
   .left {
     margin-right: auto;
@@ -11,9 +15,11 @@
     display: flex;
     column-gap: 0.25em;
 
-    .repairButton {
-      background-image: url("../../../assets/img/icon_repair.png");
-      background-size: contain;
+    .hamMenuOpenerButton {
+      cursor: pointer;
+      background-image: url("../../../assets/img/icon_settings.png");
+      background-size: calc(2em - 4px) calc(2em - 4px);
+      background-position: 2px 2px;
       background-repeat: no-repeat;
       width: 2em;
       height: 2em;
@@ -22,6 +28,67 @@
       &:hover {
         background-color: rgba(255, 255, 255, 0.209);
       }
+    }
+
+    .hamMenuOpenerButton[data-checked="true"] + .hamMenu {
+      transform: translate(0px);
+      visibility: visible;
+    }
+
+    .hamMenu {
+      width: calc(30vw + 30px);
+      height: 100%;
+      position: fixed;
+      top: var(--menuBarWidth);
+      left: -30px;
+      padding-left: 30px;
+
+      visibility: hidden;
+      transform: translate(-110%);
+      background-color: rgba(0, 0, 0, .9);
+      transition: 0.4s;
+      transition-timing-function: cubic-bezier(.33,1.23,.84,1.01);
+      justify-content: center;
+      align-items: center;
+      font: normal normal normal 1em/1.2em Arial, sans-serif;
+
+      li {
+        color: whitesmoke;
+        padding: 5px 5px 7px 31px;
+        text-indent: 0.4em;
+        border-radius: 2px;
+        font-weight:bold;
+        background-repeat:no-repeat;
+        background-position-x: 5px;
+        transition: background-color ease 0.1s;
+        margin-right: 5px;
+      }
+
+      li:active {
+        transform: scale(0.98);
+      }
+
+      li:hover {
+        background-color: rgba(245, 245, 245, 0.5);
+        cursor: pointer;
+      }
+
+      ul {
+        list-style: none;
+        padding-inline-start: 20px;
+      }
+    }
+
+    .iconOpen {
+      background-image: url("../../../assets/img/icon_open.png");
+    }
+
+    .iconRepair {
+      background-image: url("../../../assets/img/icon_repair.png");
+    }
+
+    .iconStatus {
+      background-image: url("../../../assets/img/icon_status.png");
     }
   }
 

@@ -15,6 +15,12 @@ export namespace IPC {
       app.quit();
     });
 
+    ipcMain.on("openGameDir", () => {
+      shell.openPath(Constants.GAME_PATH).catch(err => {
+        dialog.showErrorBox("Erreur", err);
+      });
+    });
+
     ipcMain.on("minimize", () => {
       mainWindow.minimize();
     });
