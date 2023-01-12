@@ -117,7 +117,7 @@
     "eslint": "^8.31.0",
     "eslint-plugin-import": "^2.27.4",
     "file-loader": "^6.2.0",
-    "fork-ts-checker-webpack-plugin": "^7.2.14",
+    "fork-ts-checker-webpack-plugin": "^7.3.0",
     "node-loader": "^2.0.0",
     "normalize.css": "^8.0.1",
     "sass": "^1.57.1",
