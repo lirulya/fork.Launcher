@@ -1514,18 +1514,24 @@
   dependencies:
     "@octokit/openapi-types" "^12.11.0"
 
-"@reforged/maker-appimage@^3.1.4":
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/@reforged/maker-appimage/-/maker-appimage-3.1.4.tgz#a58027c23f5f5001b397e21349b94ee58f096323"
-  integrity sha512-HYOSzYoAXrF/OR67YLMFz5ODff09gwzLiqrwV+CD6FAGEuuiy0qS3JXeG5j3T9XNeC6oWQ9JgxCR3tNNLVfRSw==
+"@reforged/maker-appimage@^3.1.5":
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/@reforged/maker-appimage/-/maker-appimage-3.1.5.tgz#be2fbe5106028d87a35cb38aace3a5f055a6480e"
+  integrity sha512-fwoudhvZzK85WOIR8C256et8xd7ujtvyBHtTHkVb3qwFVlFvS3odyFiP1s/5nah1cqa2z5WCeGKbHK1FEH/6Gw==
   dependencies:
     "@electron-forge/maker-base" "^6.0.4"
+    "@spacingbat3/lss" "^1.0.0"
     node-fetch "^3.2.5"
 
 "@sindresorhus/is@^4.0.0":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.6.0.tgz#3c7c9c46e678feefe7a2e5bb609d3dbd665ffb3f"
   integrity sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==
+
+"@spacingbat3/lss@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@spacingbat3/lss/-/lss-1.0.1.tgz#ad3c85eceb0fc79aab87edc567f8307ac795696e"
+  integrity sha512-9xEe4A9nlpobruNz05BDg1OOTRM3AxGRaCjZRLa9QuXZPXCCmmjCGUOi9IXDFWZqHRh7q7Hk/c9j4RF2Gutr0A==
 
 "@svgr/babel-plugin-add-jsx-attribute@^6.5.1":
   version "6.5.1"
