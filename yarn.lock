@@ -1514,10 +1514,10 @@
   dependencies:
     "@octokit/openapi-types" "^12.11.0"
 
-"@reforged/maker-appimage@^3.1.5":
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/@reforged/maker-appimage/-/maker-appimage-3.1.5.tgz#be2fbe5106028d87a35cb38aace3a5f055a6480e"
-  integrity sha512-fwoudhvZzK85WOIR8C256et8xd7ujtvyBHtTHkVb3qwFVlFvS3odyFiP1s/5nah1cqa2z5WCeGKbHK1FEH/6Gw==
+"@reforged/maker-appimage@^3.1.8":
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/@reforged/maker-appimage/-/maker-appimage-3.1.8.tgz#06784ebd14f8b98236629cae366600486176ccb2"
+  integrity sha512-3Ih8BXWEKGdLEZgCQ3JF0hRVRjydZEkKsfETMwO8Th021wiJJL8MzRBiXQjV3AGN7XsQ5pr5QgUXZ7poGUoyyA==
   dependencies:
     "@electron-forge/maker-base" "^6.0.4"
     "@spacingbat3/lss" "^1.0.0"
