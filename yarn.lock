@@ -1617,14 +1617,15 @@
   dependencies:
     "@octokit/openapi-types" "^12.11.0"
 
-"@reforged/maker-appimage@^3.1.8":
-  version "3.1.8"
-  resolved "https://registry.yarnpkg.com/@reforged/maker-appimage/-/maker-appimage-3.1.8.tgz#06784ebd14f8b98236629cae366600486176ccb2"
-  integrity sha512-3Ih8BXWEKGdLEZgCQ3JF0hRVRjydZEkKsfETMwO8Th021wiJJL8MzRBiXQjV3AGN7XsQ5pr5QgUXZ7poGUoyyA==
+"@reforged/maker-appimage@^3.1.10":
+  version "3.1.10"
+  resolved "https://registry.yarnpkg.com/@reforged/maker-appimage/-/maker-appimage-3.1.10.tgz#1d065eefbb4142a484924e892462d06c1228b1c3"
+  integrity sha512-O+b0SmHQmzhGwSBDjvtZ6X33E6cg1aLSSTeGet4s9O+XQvLKPB565lH8nXWdz1rZqt1NRyY5P8SQmY73EfE72g==
   dependencies:
     "@electron-forge/maker-base" "^6.0.4"
     "@spacingbat3/lss" "^1.0.0"
     node-fetch "^3.2.5"
+    semver "^7.3.8"
 
 "@sindresorhus/is@^4.0.0":
   version "4.6.0"
