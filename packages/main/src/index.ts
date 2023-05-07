@@ -2,6 +2,9 @@ import { app } from "electron";
 import "./security-restrictions";
 import { restoreOrCreateWindow } from "/@/mainWindow";
 import { platform } from "node:process";
+import { autoUpdater } from "electron-updater";
+import log from "electron-log";
+import type { ElectronLog } from "electron-log";
 
 app.setAppUserModelId("com.arena-returns.launcher");
 
@@ -42,20 +45,8 @@ app
   .then(restoreOrCreateWindow)
   .catch(e => console.error("Failed create window:", e));
 
-/**
- * Check for app updates, install it in background and notify user that new version was installed.
- * No reason run this in non-production build.
- * @see https://www.electron.build/auto-update.html#quick-setup-guide
- *
- * Note: It may throw "ENOENT: no such file app-update.yml"
- * if you compile production app without publishing it to distribution server.
- * Like `yarn compile` does. It's ok 😅
- */
-app
-  .whenReady()
-  .then(() => import("electron-updater"))
-  .then(module => {
-    const autoUpdater = module.autoUpdater || (module.default.autoUpdater as (typeof module)["autoUpdater"]);
-    return autoUpdater.checkForUpdatesAndNotify();
-  })
-  .catch(e => console.error("Failed check and install updates:", e));
+autoUpdater.logger = log;
+(autoUpdater.logger as ElectronLog).transports.file.level = "info";
+app.on("ready", function () {
+  autoUpdater.checkForUpdatesAndNotify();
+});

@@ -2,6 +2,7 @@ import { app, BrowserWindow } from "electron";
 import { join, resolve } from "node:path";
 import * as CdnService from "./cdnService";
 import * as IPC from "./ipc";
+import log from "electron-log";
 
 export let browserWindow: BrowserWindow;
 
@@ -31,7 +32,7 @@ async function createWindow() {
   });
 
   if (process.platform === "linux") {
-    console.log("Linux system detected. Disabling resizing as it causes issues with Gnome.");
+    log.info("Linux system detected. Disabling resizing as it causes issues with Gnome.");
     browserWindow.setResizable(false);
   }
 

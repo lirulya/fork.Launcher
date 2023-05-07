@@ -7,6 +7,7 @@ import * as CdnService from "./cdnService";
 import * as Updater from "./updater";
 import { exec } from "child_process";
 import * as Utils from "./utils";
+import log from "electron-log";
 
 export enum DebugMode {
   NO_DEBUG,
@@ -104,19 +105,19 @@ export function registerEvents(mainWindow: BrowserWindow) {
 
   ipcMain.on("launchGame", _event => {
     if (devMode) {
-      console.log("DevMode enabled, checking if we need to inject a localhost config in the client...");
+      log.info("DevMode enabled, checking if we need to inject a localhost config in the client...");
       const gameConfigPath = path.join(Constants.GAME_PATH, "game", "config.properties");
       const gameConfig = fs.readFileSync(gameConfigPath);
       if (gameConfig.includes("127.0.0.1:5555") || gameConfig.includes("localhost:5555")) {
-        console.log("Localhost config already present, good!");
+        log.info("Localhost config already present, good!");
       } else {
-        console.log("Adding the Localhost config");
+        log.info("Adding the Localhost config");
         fs.appendFileSync(gameConfigPath, "\r\nproxyGroup_2=Localhost\r\nproxyAddresses_2=127.0.0.1:5555");
       }
     }
 
     const javaArgs = Utils.buildJavaArgs(process.platform);
-    console.log(`Launching game with args: ${javaArgs}`);
+    log.info(`Launching game with args: ${javaArgs}`);
 
     switch (process.platform) {
       case "win32":
