@@ -51,13 +51,11 @@ app
  * if you compile production app without publishing it to distribution server.
  * Like `yarn compile` does. It's ok 😅
  */
-if (import.meta.env.PROD) {
-  app
-    .whenReady()
-    .then(() => import("electron-updater"))
-    .then(module => {
-      const autoUpdater = module.autoUpdater || (module.default.autoUpdater as (typeof module)["autoUpdater"]);
-      return autoUpdater.checkForUpdatesAndNotify();
-    })
-    .catch(e => console.error("Failed check and install updates:", e));
-}
+app
+  .whenReady()
+  .then(() => import("electron-updater"))
+  .then(module => {
+    const autoUpdater = module.autoUpdater || (module.default.autoUpdater as (typeof module)["autoUpdater"]);
+    return autoUpdater.checkForUpdatesAndNotify();
+  })
+  .catch(e => console.error("Failed check and install updates:", e));
