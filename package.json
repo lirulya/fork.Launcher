@@ -1,6 +1,6 @@
 {
   "name": "@arenareturns/launcher",
-  "description": "WIP",
+  "description": "Le launcher officiel d'Arena Returns",
   "version": "2.0.0",
   "author": {
     "email": "contact@arena-returns.com",
@@ -13,7 +13,7 @@
     "build:main": "cd ./packages/main && vite build",
     "build:preload": "cd ./packages/preload && vite build",
     "build:renderer": "cd ./packages/renderer && vite build",
-    "compile": "cross-env MODE=production yarn build && electron-builder build --config .electron-builder.config.js --dir --config.asar=false",
+    "compile": "cross-env MODE=production yarn build && electron-builder build --config .electron-builder.config.js --dir",
     "watch": "node scripts/watch.mjs",
     "lint": "eslint . --ext js,mjs,cjs,ts,mts,cts,tsx",
     "format": "prettier --write \"**/*.{js,mjs,cjs,ts,mts,cts,tsx,json}\"",

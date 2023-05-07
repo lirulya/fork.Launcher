@@ -12,6 +12,11 @@ module.exports = async function () {
   const { getVersion } = await import("./version/getVersion.mjs");
 
   return {
+    appId: "com.arena-returns.launcher",
+    productName: "Arena Returns Launcher",
+    copyright: "Copyright © 2023 Arena Returns",
+    compression: "maximum",
+    asar: true,
     directories: {
       output: "dist",
       buildResources: "buildResources",
@@ -21,9 +26,29 @@ module.exports = async function () {
       version: getVersion(),
     },
 
-    // Specify linux target just for disabling snap compilation
+    // Windows build
+    win: {
+      target: {
+        target: "nsis-web",
+        arch: "ia32",
+      },
+    },
+    nsisWeb: {
+      oneClick: false,
+      perMachine: false,
+      allowElevation: true,
+      allowToChangeInstallationDirectory: true,
+      menuCategory: true,
+      artifactName: "ArenaReturnsLauncher-Setup.${ext}",
+    },
+
+    // Linux build
     linux: {
-      target: "deb",
+      target: {
+        target: "appimage",
+        arch: ["ia32", "x64"],
+      },
+      category: "Game",
     },
   };
 };

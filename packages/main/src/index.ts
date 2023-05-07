@@ -3,6 +3,8 @@ import "./security-restrictions";
 import { restoreOrCreateWindow } from "/@/mainWindow";
 import { platform } from "node:process";
 
+app.setAppUserModelId("com.arena-returns.launcher");
+
 /**
  * Prevent electron from running multiple instances.
  */
