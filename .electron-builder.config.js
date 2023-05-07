@@ -42,7 +42,10 @@ module.exports = async function () {
       createDesktopShortcut: "always",
       createStartMenuShortcut: true,
       artifactName: "ArenaReturnsLauncher-Setup.${ext}",
-      appPackageUrl: "https://launcher.arena-returns.com/download/nsis",
+      publish: {
+        provider: "generic",
+        url: "https://launcher.arena-returns.com/download/nsis",
+      },
     },
 
     // Linux build
