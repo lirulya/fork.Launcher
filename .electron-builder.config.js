@@ -15,8 +15,8 @@ module.exports = async function () {
     appId: "com.arena-returns.launcher",
     productName: "Arena Returns Launcher",
     copyright: "Copyright © 2023 Arena Returns",
-    compression: "maximum",
-    asar: false,
+    compression: "normal",
+    asar: true,
     directories: {
       output: "dist",
       buildResources: "buildResources",
