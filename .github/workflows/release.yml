@@ -29,7 +29,6 @@ jobs:
         with:
           node-version: 18
           cache: 'yarn'
-      - run: rm -rf node_modules
       - run: yarn install --frozen-lockfile
       - run: yarn build
       - name: Compile artifacts ${{ inputs.dry-run && '' || 'and upload them to github release' }}
