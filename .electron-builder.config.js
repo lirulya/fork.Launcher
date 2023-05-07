@@ -49,7 +49,7 @@ module.exports = async function () {
     linux: {
       target: {
         target: "appimage",
-        arch: ["ia32", "x64"],
+        arch: ["x64"],
       },
       category: "Game",
     },
