@@ -1,7 +1,7 @@
 {
   "name": "@arenareturns/launcher",
   "productName": "Arena Returns Launcher",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Le launcher officiel d'Arena Returns",
   "main": ".webpack/main",
   "scripts": {
