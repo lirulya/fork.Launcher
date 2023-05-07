@@ -39,7 +39,10 @@ module.exports = async function () {
       allowElevation: true,
       allowToChangeInstallationDirectory: true,
       menuCategory: true,
+      createDesktopShortcut: "always",
+      createStartMenuShortcut: true,
       artifactName: "ArenaReturnsLauncher-Setup.${ext}",
+      appPackageUrl: "https://launcher.arena-returns.com/download/latest",
     },
 
     // Linux build
