@@ -1,29 +1,9 @@
 on:
   workflow_dispatch:
-    paths:
-      - '**.js'
-      - '**.mjs'
-      - '**.cjs'
-      - '**.jsx'
-      - '**.ts'
-      - '**.mts'
-      - '**.cts'
-      - '**.tsx'
-      - '**.json'
-  pull_request:
-    paths:
-      - '**.js'
-      - '**.mjs'
-      - '**.cjs'
-      - '**.jsx'
-      - '**.ts'
-      - '**.mts'
-      - '**.cts'
-      - '**.tsx'
-      - '**.json'
+  workflow_call:
 
 concurrency:
-  group: lint-${{ github.ref }}
+  group: build-${{ github.ref }}
   cancel-in-progress: true
 
 defaults:
@@ -33,13 +13,11 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'yarn'
-
       - run: yarn install --frozen-lockfile
       - run: yarn build
