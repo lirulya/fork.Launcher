@@ -41,7 +41,7 @@ module.exports = async function () {
       menuCategory: true,
       createDesktopShortcut: "always",
       createStartMenuShortcut: true,
-      artifactName: "ArenaReturnsLauncher-Setup.${ext}",
+      artifactName: "ArenaReturnsLauncher-${version}-Setup.${ext}",
     },
 
     // Linux build
