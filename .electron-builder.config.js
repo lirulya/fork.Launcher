@@ -30,7 +30,7 @@ module.exports = async function () {
     win: {
       target: {
         target: "nsis-web",
-        arch: "ia32",
+        arch: ["ia32", "x64"],
       },
     },
     nsisWeb: {
