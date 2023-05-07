@@ -20,7 +20,7 @@ export async function loadManifest() {
       });
 
       if (response && response.response === 1) {
-        shell.openExternal("https://github.com/ArenaReturns/Launcher/releases/latest");
+        shell.openExternal("https://launcher.arena-returns.com/download/linux");
         app.quit();
       }
     }
