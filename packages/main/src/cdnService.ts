@@ -3,11 +3,13 @@ import { Constants } from "./constants";
 import { app, dialog, shell } from "electron";
 import got from "got";
 import { browserWindow } from "./mainWindow";
+import log from "electron-log";
 
 export let manifest: Manifest;
 
 export async function loadManifest() {
   try {
+    log.info("Downloading manifest.json");
     manifest = await got.get(`${Constants.CDN_URL}/manifest.json`).json();
 
     // Automatic updates are only available on Windows
