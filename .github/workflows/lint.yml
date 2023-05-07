@@ -29,4 +29,5 @@ jobs:
         with:
           node-version: 18
           cache: 'yarn'
-      - run: npx prettier --check "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,json}"
+      - run: yarn install --frozen-lockfile
+      - run: npx --no-install prettier --check "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,json}"
