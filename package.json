@@ -43,7 +43,7 @@
     "simple-git-hooks": "2.8.1",
     "typescript": "5.0.4",
     "unplugin-auto-expose": "0.0.4",
-    "vite": "4.3.5"
+    "vite": "4.3.9"
   },
   "dependencies": {
     "classnames": "2.3.2",
